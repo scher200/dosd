@@ -9,3 +9,4 @@ ADD setup.sh setup.sh
 ENTRYPOINT ["/bin/bash"]
 
 CMD ["setup.sh"]
+
