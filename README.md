@@ -32,12 +32,14 @@ docker run -d --name swarm -p 8080:8080 --privileged scher200/dosd
 ```
 docker run -d --name swarm -p 80:80 --privileged \
            -e DOCKERD_CMD="dockerd --log-level 'fatal' > /dev/null 2>&1 &" \
+           -e CUSTOM_CMD="docker login custom.registry.com -u yourusername -p yourpassword" \
            -e GIT_REPO="https://ThIsYoUrAmAzInGtOkEn@gitlab.com/username/yourawesomeproject" \
            -e GIT_BRANCH="master" \
            -e DEPLOY_STACK="docker stack deploy -c docker-compose.yml mystackname" \
            scher200/dosd
 ```
 * If you like more logging or want to define a specail docker deamon setup, define DOCKERD_CMD
+* You can set any CUSTOM_CMD before you deploy your project, handy for if you like to login to a private registry before deploying yor project
 * Please use an access token if you need to authentication with your private GIT_REPO
 * Make sure any GIT_BRACH you define is available in the targeted GIT_REPO
 * The DEPLOY_STACK variable can contain a simple docker (swarm) command or any other shell script as long as is shipped within your project.
