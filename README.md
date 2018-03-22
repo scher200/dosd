@@ -33,9 +33,9 @@ docker run -d --name swarm -p 8080:8080 --privileged scher200/dosd
 docker run -d --name swarm -p 80:80 --privileged \
            -e DOCKERD_CMD="dockerd --log-level 'fatal' > /dev/null 2>&1 &" \
            -e CUSTOM_CMD="docker login custom.registry.com -u yourusername -p yourpassword" \
-           -e GIT_REPO="https://ThIsYoUrAmAzInGtOkEn@gitlab.com/username/yourawesomeproject" \
+           -e GIT_REPO="https://username:ThIsYoUrAmAzInGtOkEn@gitlab.com/username/yourawesomeproject" \
            -e GIT_BRANCH="master" \
-           -e DEPLOY_STACK="docker stack deploy -c docker-compose.yml mystackname" \
+           -e DEPLOY_STACK="docker stack deploy --with-registry-auth -c docker-compose.yml mystackname" \
            scher200/dosd
 ```
 * If you like more logging or want to define a specail docker deamon setup, define DOCKERD_CMD
